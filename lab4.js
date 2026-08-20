@@ -3,6 +3,7 @@ const car = {
   fuelLevel: 50,
 
   drive(distance) {
+    // this refers to whichever object called drive() — here, car.
     this.fuelLevel -= distance * 0.1;
     console.log(`${this.brand} drove ${distance}km, fuel left: ${this.fuelLevel}`);
   },

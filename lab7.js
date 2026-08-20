@@ -1,3 +1,5 @@
+// IIFE: the wrapping function runs once, immediately, and its scope
+// becomes the only place balance can ever be touched from.
 const bankAccount = (function () {
   let balance = 0;
 
@@ -19,10 +21,10 @@ const bankAccount = (function () {
     return balance;
   }
 
-  return { deposit, withdraw, getBalance };
+  return { deposit, withdraw, getBalance }; // only this trio is exposed — the public API
 })();
 
 bankAccount.deposit(100);
 bankAccount.withdraw(30);
 console.log(bankAccount.getBalance());
-console.log(bankAccount.balance);
+console.log(bankAccount.balance); // undefined — balance is private, not on the returned object

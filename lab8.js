@@ -1,4 +1,5 @@
 function throttle(fn, interval) {
+  // lastCalled is private closure state — only the returned wrapper can read/update it.
   let lastCalled = 0;
 
   return function (...args) {
@@ -6,7 +7,7 @@ function throttle(fn, interval) {
 
     if (now - lastCalled >= interval) {
       lastCalled = now;
-      fn.apply(this, args);
+      fn.apply(this, args); // preserves the caller's `this` and arguments
     } else {
       console.log(`Ignored (only ${now - lastCalled}ms since last run)`);
     }
